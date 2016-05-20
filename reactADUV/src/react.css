@@ -1,7 +1,7 @@
 *{padding:0;margin:0;font: 12px/1.5 tahoma,arial,'Hiragino Sans GB',"宋体",sans-serif;}
 .main{width:400px;margin:30px auto;border:1px solid #ECDADA;}
 .title{text-align:center;font-weight:700;font-size:16px;margin:10px 0;}
-.table{margin:10px;width:380px;border:1px solid #ddd;}
+.table{margin:10px;width:380px;border:1px solid #ddd;border-collapse:collapse;border-spacing:0;word-wrap:break-word;word-break:break-all;white-space:normal;}
 .row:nth-child(odd){background-color:#f2f2f2}
 .row:nth-child(even){background-color:#ededed}
 .row td{padding: 6px 9px;word-break: break-word}
