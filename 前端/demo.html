@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>标签</title>
+	<style>
+	</style>
+	<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script> 
+	<!-- <script   src="https://code.jquery.com/jquery-1.4.4.min.js"   integrity="sha256-UXNk8tRRYvtQN0N7W2y5U9ANmys7ebqH2f5X6m7mBww="   crossorigin="anonymous"></script> -->
+    <script type="text/javascript">
+
+		var re = /(\w+)\s(\d+)/;
+		var result = re.exec("aaa 323");
+
+		console.log(RegExp.$1 + ", your age is " + RegExp.$2)
+
+
+		var reg = /a(b+(c*))/g;
+		var string = "abbababbbbbc";
+
+		while(reg.lastIndex<string.length){
+			console.log(reg.lastIndex);
+			console.log(reg.exec("abbababbbbbc"));
+			console.log("First map:" + RegExp.$1 + 
+				"\n Second map: " + RegExp.$2 + 
+				"\n lastMatch: " + RegExp.lastMatch + 
+				"\n lastParen: " + RegExp.lastParen +
+				"\n leftContext: " + RegExp.leftContext +
+				"\n rightContext: " + RegExp.rightContext)
+		}
+
+		var reg1 = new RegExp("\\*","g");
+		reg1.test('*');
+	</script>
+  </head>
+  <body>
+
+  </body>
+</html>

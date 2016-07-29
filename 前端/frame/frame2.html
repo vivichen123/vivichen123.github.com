@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>frame2</title>
+	<style>
+	</style>
+	<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+  <script type="text/javascript">
+       window.addEventListener('message', function(event){
+        console.log('a')
+        // 通过origin属性判断消息来源地址
+        if (event.origin == 'http://127.0.0.1:8888') {
+          if(typeof event.data === 'object'){
+            $('#message').html( $('#message').html()+ '<br>' +event.data.a + "," + event.data.a)
+          }else{
+            $('#message').html( $('#message').html()+ '<br>' +event.data)
+          }
+        }
+    }, false);
+	</script>
+  </head>
+  <body style="background-color:blue;">
+	 <div id="message"></div>
+  </body>
+</html>

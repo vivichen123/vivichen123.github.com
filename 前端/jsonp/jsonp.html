@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">  
+<html>  
+<head>  
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
+<title>Insert title here</title>  
+    <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+</head>  
+<script type="text/javascript">  
+$(function(){     
+    /*  
+    //简写形式，效果相同  
+    $.getJSON("http://app.example.com/base/json.do?sid=1494&busiId=101&jsonpCallback=?",  
+            function(data){  
+                $("#showcontent").text("Result:"+data.result)  
+    });  
+    */  
+    $.ajax({  
+        type : "post",  
+        async:false,  
+        url : "http://127.0.0.1:8888/jsonp.data",  
+        dataType : "jsonp",//数据类型为jsonp  
+        jsonp: "jsonpCallback",//服务端用于接收callback调用的function名的参数  
+        jsonpCallback: "receive",
+        success : function(data){  
+            $("#showcontent").text("Result:"+data.a)  
+        },  
+        error:function(){  
+            alert('fail');  
+        }  
+    });   
+});  
+</script>  
+<body>  
+<div id="showcontent">Result:</div>  
+</body>  
+</html>  

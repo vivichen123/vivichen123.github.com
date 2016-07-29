@@ -1,0 +1,66 @@
+<html>
+	<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+    <script type="text/javascript">
+    	window.onload = function() {
+		    var ifr1 = document.getElementById('ifr1');
+		    //var targetOrigin = 'http://b.com';  // 若写成'http://b.com/c/proxy.html'效果一样
+		                                        // 若写成'http://c.com'就不会执行postMessage了
+		    var targetOrigin = "http://127.0.0.1:8899";
+		    ifr1.contentWindow.postMessage('Message Form Parent!', targetOrigin); 
+		};
+
+		window.addEventListener('message', function(event){
+			 //$('#message').html( $('#message').html()+ '<br>' +event.data)
+        	//console.log('in frame',event.data, event.origin);
+	        // 通过origin属性判断消息来源地址
+	        if (event.origin == 'http://127.0.0.1:8899') {
+	            $('#message').html( $('#message').html()+ '<br>' +event.data)
+	        }
+    	}, false);
+
+		function crossFieldFunction(){
+			console.log('I am crossFieldFunction');
+		}
+
+		var k = {
+			a:1,
+			b:2
+			/*,
+			getA:function(){
+				return this.a;
+			}*/
+		}
+		var  array = ['a', 'b', 'c']
+		function doClick(){
+		    var ifr1 = document.getElementById('ifr1');
+		    //var targetOrigin = 'http://b.com';  // 若写成'http://b.com/c/proxy.html'效果一样
+		                                        // 若写成'http://c.com'就不会执行postMessage了
+		    var targetOrigin = "http://127.0.0.1:8899";
+		    ifr1.contentWindow.postMessage(k, targetOrigin); 
+		}
+
+		function doOpen(){
+			newWindow = window.open('http://127.0.0.1:8899/frame2.html', 'newwindow');
+			/*newWindow.onload =function(){
+				newWindow.postMessage('父窗口传来的消息！', "http://127.0.0.1:8899")
+			} */
+			setTimeout(sendMessage, 2000);
+
+		}
+
+		function sendMessage(){
+			newWindow.postMessage('父窗口传来的消息！', "http://127.0.0.1:8899")
+		}
+
+		function doSend(){
+			sendMessage();
+		}
+	</script>
+	<body>
+		<button type="button" onclick="doClick()">向子窗口发送消息</button>
+		<button type="button" onclick="doOpen()">打开一个新的窗口，并发送消息</button>
+		<button type="button" onclick="doSend()">发送</button>
+		<div id="message"></div>
+		<iframe id="ifr1" src="http://127.0.0.1:8899/frame1.html" style="width:100%;height:400px;">
+	</body>
+</html>
